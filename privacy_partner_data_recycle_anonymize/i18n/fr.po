@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* privacy_partner_data_recycle_anonymize
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: privacy_partner_data_recycle_anonymize
+#: model_terms:ir.ui.view,arch_db:privacy_partner_data_recycle_anonymize.view_data_recycle_model_form
+msgid "Anonymization only applies to Contacts and Users and is irreversible."
+msgstr "L'anonymisation ne s'applique qu'aux contacts et aux utilisateurs et est irréversible."
+
+#. module: privacy_partner_data_recycle_anonymize
+#: model:ir.model.fields.selection,name:privacy_partner_data_recycle_anonymize.selection__data_recycle_model__recycle_action__anonymize
+msgid "Anonymize"
+msgstr "Anonymiser"
+
+#. module: privacy_partner_data_recycle_anonymize
+#. odoo-python
+#: code:addons/privacy_partner_data_recycle_anonymize/models/data_recycle_model.py:0
+msgid "Only contacts and users can be anonymized."
+msgstr "Seuls les contacts et les utilisateurs peuvent être anonymisés."
+
+#. module: privacy_partner_data_recycle_anonymize
+#: model:ir.model.fields,field_description:privacy_partner_data_recycle_anonymize.field_data_recycle_model__recycle_action
+msgid "Recycle Action"
+msgstr "Action à recycler"
+
+#. module: privacy_partner_data_recycle_anonymize
+#: model:ir.model,name:privacy_partner_data_recycle_anonymize.model_data_recycle_model
+msgid "Recycling Model"
+msgstr "Modèle de recyclage"
+
+#. module: privacy_partner_data_recycle_anonymize
+#: model:ir.model,name:privacy_partner_data_recycle_anonymize.model_data_recycle_record
+msgid "Recycling Record"
+msgstr "Enregistrement de recyclage"
+
+#. module: privacy_partner_data_recycle_anonymize
+#. odoo-python
+#: code:addons/privacy_partner_data_recycle_anonymize/models/data_recycle_model.py:0
+msgid "You don't have permission to anonymize partners."
+msgstr "Vous n'avez pas les droits pour anonymiser des contacts."

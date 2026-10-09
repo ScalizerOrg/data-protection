@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Scalizer
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0). -->
+<odoo>
+    <record id="view_data_recycle_model_form" model="ir.ui.view">
+        <field name="model">data_recycle.model</field>
+        <field name="inherit_id" ref="data_recycle.view_data_merge_model_form" />
+        <field name="arch" type="xml">
+            <field name="include_archived" position="attributes">
+                <attribute
+                    name="invisible"
+                >recycle_action not in ('unlink', 'anonymize')</attribute>
+            </field>
+            <field name="recycle_action" position="after">
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    colspan="2"
+                    invisible="recycle_action != 'anonymize'"
+                >
+                    Anonymization only applies to Contacts and Users and is irreversible.
+                </div>
+            </field>
+        </field>
+    </record>
+</odoo>
