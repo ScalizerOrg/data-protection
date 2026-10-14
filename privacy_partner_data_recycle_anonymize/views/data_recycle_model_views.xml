@@ -9,7 +9,7 @@
             <field name="include_archived" position="attributes">
                 <attribute
                     name="invisible"
-                >recycle_action not in ('unlink', 'anonymize')</attribute>
+                >recycle_action not in ('unlink', 'anonymize', 'remove_messages')</attribute>
             </field>
             <field name="recycle_action" position="after">
                 <div
@@ -18,7 +18,19 @@
                     colspan="2"
                     invisible="recycle_action != 'anonymize'"
                 >
-                    Anonymization only applies to Contacts and Users and is irreversible.
+                    <p
+                    >Anonymization only applies to Contacts and Users and is irreversible.</p>
+                    <p>Messages are kept, use a separate "Remove Messages" rule.</p>
+                </div>
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    colspan="2"
+                    invisible="recycle_action != 'remove_messages'"
+                >
+                    <p>Deletes the messages on, by and to the Contacts and Users.</p>
+                    <p
+                    >This includes sales orders and invoices messages and is irreversible.</p>
                 </div>
             </field>
         </field>

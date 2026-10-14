@@ -50,3 +50,23 @@ msgstr "Enregistrement de recyclage"
 #: code:addons/privacy_partner_data_recycle_anonymize/models/data_recycle_model.py:0
 msgid "You don't have permission to anonymize partners."
 msgstr "Vous n'avez pas les droits pour anonymiser des contacts."
+
+#. module: privacy_partner_data_recycle_anonymize
+#: model_terms:ir.ui.view,arch_db:privacy_partner_data_recycle_anonymize.view_data_recycle_model_form
+msgid "Messages are kept, use a separate \"Remove Messages\" rule."
+msgstr "Les messages sont conservés, utilisez une règle « Supprimer les messages » distincte."
+
+#. module: privacy_partner_data_recycle_anonymize
+#: model_terms:ir.ui.view,arch_db:privacy_partner_data_recycle_anonymize.view_data_recycle_model_form
+msgid "Deletes the messages on, by and to the Contacts and Users."
+msgstr "Supprime les messages sur, de et vers les contacts et utilisateurs."
+
+#. module: privacy_partner_data_recycle_anonymize
+#: model_terms:ir.ui.view,arch_db:privacy_partner_data_recycle_anonymize.view_data_recycle_model_form
+msgid "This includes sales orders and invoices messages and is irreversible."
+msgstr "Cela inclut les messages des commandes et des factures et est irréversible."
+
+#. module: privacy_partner_data_recycle_anonymize
+#: model:ir.model.fields.selection,name:privacy_partner_data_recycle_anonymize.selection__data_recycle_model__recycle_action__remove_messages
+msgid "Remove Messages"
+msgstr "Supprimer les messages"

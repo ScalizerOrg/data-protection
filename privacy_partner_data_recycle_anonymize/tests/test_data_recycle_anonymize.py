@@ -21,12 +21,12 @@ class TestDataRecycleAnonymize(TransactionCase):
         )
         cls.user = new_test_user(cls.env, login="kenny", name="Kenny McCormick")
 
-    def _create_rule(self, model_xmlid, records, mode="automatic"):
+    def _create_rule(self, model_xmlid, records, mode="automatic", action="anonymize"):
         return self.env["data_recycle.model"].create(
             {
                 "name": "Anonymize",
                 "res_model_id": self.env.ref(model_xmlid).id,
-                "recycle_action": "anonymize",
+                "recycle_action": action,
                 "recycle_mode": mode,
                 "domain": str([("id", "in", records.ids)]),
                 "time_field_id": False,
@@ -62,6 +62,20 @@ class TestDataRecycleAnonymize(TransactionCase):
         rule.include_archived = True
         rule._recycle_records()
         self.assertEqual(self.partner.name, name)
+
+    def test_anonymize_keeps_messages(self):
+        message = self.partner.message_post(body="Order shipped")
+        self._create_rule("base.model_res_partner", self.partner)._recycle_records()
+        self.assertEqual(self.partner.name, "EC Anonymized")
+        self.assertTrue(message.exists())
+
+    def test_remove_messages(self):
+        message = self.partner.message_post(body="Order shipped")
+        self._create_rule(
+            "base.model_res_partner", self.partner, action="remove_messages"
+        )._recycle_records()
+        self.assertFalse(message.exists())
+        self.assertEqual(self.partner.name, "Eric Cartman")
 
     def test_anonymize_other_model_forbidden(self):
         with self.assertRaises(ValidationError):

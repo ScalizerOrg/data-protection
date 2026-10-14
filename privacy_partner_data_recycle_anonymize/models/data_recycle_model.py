@@ -5,22 +5,26 @@ from odoo import _, api, fields, models
 from odoo.exceptions import AccessError, ValidationError
 
 ANONYMIZABLE_MODELS = ("res.partner", "res.users")
+ANONYMIZE_ACTIONS = ("anonymize", "remove_messages")
 
 
 class DataRecycleModel(models.Model):
     _inherit = "data_recycle.model"
 
     recycle_action = fields.Selection(
-        selection_add=[("anonymize", "Anonymize")],
+        selection_add=[
+            ("anonymize", "Anonymize"),
+            ("remove_messages", "Remove Messages"),
+        ],
         # Never fall back to the "Delete" default on uninstall
-        ondelete={"anonymize": "cascade"},
+        ondelete={"anonymize": "cascade", "remove_messages": "cascade"},
     )
 
     @api.constrains("recycle_action", "res_model_id")
     def _check_recycle_action_anonymize(self):
-        """Restrict anonymization rules to contacts and users, set up by
-        anonymization administrators only."""
-        rules = self.filtered(lambda rule: rule.recycle_action == "anonymize")
+        """Restrict anonymization and message removal rules to contacts and
+        users, set up by anonymization administrators only."""
+        rules = self.filtered(lambda rule: rule.recycle_action in ANONYMIZE_ACTIONS)
         if not rules:
             return
         if not self.env.su and not self.env.user.has_group(

@@ -370,12 +370,17 @@ ul.auto-toc {
 !! source digest: sha256:0946368f008e4565dc5745a0ce77ece4865084b3d0115cb4c6b94b3b33d44f22
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/licence-LGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/data-protection/tree/18.0/privacy_partner_data_recycle_anonymize"><img alt="OCA/data-protection" src="https://img.shields.io/badge/github-OCA%2Fdata--protection-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/data-protection-18-0/data-protection-18-0-privacy_partner_data_recycle_anonymize"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/data-protection&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>Adds an <strong>Anonymize</strong> action to Data Recycle rules on Contacts and
-Users.</p>
-<p>Records matched by the rule are anonymized with the right to be
-forgotten logic of <tt class="docutils literal">privacy_partner_to_be_forgotten</tt> (contact, related
-users, messages and attachments), manually or automatically by the Data
-Recycle cron.</p>
+<p>Adds two actions to Data Recycle rules on Contacts and Users:</p>
+<ul class="simple">
+<li><strong>Anonymize</strong>: anonymizes the records with the right to be forgotten
+logic of <tt class="docutils literal">privacy_partner_to_be_forgotten</tt> (contact, related users
+and attachments). Messages are kept.</li>
+<li><strong>Remove Messages</strong>: deletes the messages of the contacts (on the
+contact, authored by or sent to them, and in their discussion
+channels).</li>
+</ul>
+<p>Both run manually or automatically by the Data Recycle cron, so message
+removal can be scheduled separately from anonymization, or not at all.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -394,14 +399,15 @@ Recycle cron.</p>
 <ol class="arabic simple">
 <li>Go to <em>Data Cleaning &gt; Configuration &gt; Recycle Records Rules</em>.</li>
 <li>Create a rule on the <em>Contact</em> or <em>User</em> model and choose the
-<em>Anonymize</em> action.</li>
+<em>Anonymize</em> action. To also delete the contacts’ messages, create a
+separate rule with the <em>Remove Messages</em> action.</li>
 <li>Set the filter and time field to target the records to anonymize.
 Tick <em>Include Archived</em> to also anonymize archived records.</li>
 <li>In <em>Manual</em> mode, validate the records to anonymize from the rule; in
 <em>Automatic</em> mode, the Data Recycle cron anonymizes them.</li>
 </ol>
 <p>Only users of the <em>Anonymize Contacts / Administrator</em> group can set up
-an anonymization rule. Anonymization is irreversible.</p>
+an anonymization or message removal rule. Both are irreversible.</p>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h1>

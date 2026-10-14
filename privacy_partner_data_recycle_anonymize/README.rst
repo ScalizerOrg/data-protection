@@ -28,13 +28,17 @@ Privacy Partner Data Recycle Anonymize
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Adds an **Anonymize** action to Data Recycle rules on Contacts and
-Users.
+Adds two actions to Data Recycle rules on Contacts and Users:
 
-Records matched by the rule are anonymized with the right to be
-forgotten logic of ``privacy_partner_to_be_forgotten`` (contact, related
-users, messages and attachments), manually or automatically by the Data
-Recycle cron.
+- **Anonymize**: anonymizes the records with the right to be forgotten
+  logic of ``privacy_partner_to_be_forgotten`` (contact, related users
+  and attachments). Messages are kept.
+- **Remove Messages**: deletes the messages of the contacts (on the
+  contact, authored by or sent to them, and in their discussion
+  channels).
+
+Both run manually or automatically by the Data Recycle cron, so message
+removal can be scheduled separately from anonymization, or not at all.
 
 **Table of contents**
 
@@ -46,14 +50,15 @@ Usage
 
 1. Go to *Data Cleaning > Configuration > Recycle Records Rules*.
 2. Create a rule on the *Contact* or *User* model and choose the
-   *Anonymize* action.
+   *Anonymize* action. To also delete the contacts' messages, create a
+   separate rule with the *Remove Messages* action.
 3. Set the filter and time field to target the records to anonymize.
    Tick *Include Archived* to also anonymize archived records.
 4. In *Manual* mode, validate the records to anonymize from the rule; in
    *Automatic* mode, the Data Recycle cron anonymizes them.
 
 Only users of the *Anonymize Contacts / Administrator* group can set up
-an anonymization rule. Anonymization is irreversible.
+an anonymization or message removal rule. Both are irreversible.
 
 Bug Tracker
 ===========
